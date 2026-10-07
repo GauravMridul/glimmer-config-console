@@ -1,0 +1,67 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: decisioning-portal-uat
+  namespace: staging
+  labels:
+    app: decisioning-portal-uat
+    environment: staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: decisioning-portal-uat
+  template:
+    metadata:
+      labels:
+        app: decisioning-portal-uat
+        environment: staging
+    spec:
+      containers:
+        - name: decisioning-portal-uat
+          image: <IMAGE>
+          ports:
+            - containerPort: 4000
+          envFrom:
+            - secretRef:
+                name: decisioning-portal-uat
+          env:
+            - name: PUBLIC_BASE_PATH
+              value: "/decisioning-portal"
+            - name: STATIC_DIST_DIR
+              value: "/app/dist"
+            - name: TRUST_PROXY
+              value: "1"
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "256m"
+            limits:
+              memory: "1000Mi"
+              cpu: "512m"
+          livenessProbe:
+            httpGet:
+              path: /decisioning-portal/api/health
+              port: 4000
+            initialDelaySeconds: 100
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /decisioning-portal/api/health
+              port: 4000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: decisioning-portal-uat
+  namespace: staging
+spec:
+  selector:
+    app: decisioning-portal-uat
+  ports:
+    - protocol: TCP
+      port: 4000
+      targetPort: 4000
+  type: ClusterIP

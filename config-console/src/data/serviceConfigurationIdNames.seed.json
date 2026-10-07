@@ -1,0 +1,376 @@
+{
+  "services": [
+    {
+      "id": 1,
+      "service_name": "IndustryCategorizationModel"
+    },
+    {
+      "id": 2,
+      "service_name": "NameMatchSolutionAPI_1"
+    },
+    {
+      "id": 3,
+      "service_name": "ActicoPreBureau"
+    },
+    {
+      "id": 4,
+      "service_name": "CIBIL"
+    },
+    {
+      "id": 5,
+      "service_name": "acticoData"
+    },
+    {
+      "id": 6,
+      "service_name": "MonnaiInsights"
+    },
+    {
+      "id": 7,
+      "service_name": "S3MonnaiUpload"
+    },
+    {
+      "id": 8,
+      "service_name": "PANITRService"
+    },
+    {
+      "id": 9,
+      "service_name": "TartanVerification"
+    },
+    {
+      "id": 10,
+      "service_name": "KarzaMobileAuth"
+    },
+    {
+      "id": 11,
+      "service_name": "LatLongAnalytics"
+    },
+    {
+      "id": 12,
+      "service_name": "MobileUANService"
+    },
+    {
+      "id": 13,
+      "service_name": "BureauBS_Ascore"
+    },
+    {
+      "id": 14,
+      "service_name": "CompanyNameMatch"
+    },
+    {
+      "id": 15,
+      "service_name": "PayU"
+    },
+    {
+      "id": 16,
+      "service_name": "ExternalDBForBS"
+    },
+    {
+      "id": 17,
+      "service_name": "authenticateUser_Tartan"
+    },
+    {
+      "id": 18,
+      "service_name": "SherlockCRIF"
+    },
+    {
+      "id": 19,
+      "service_name": "PFAPRCalculation"
+    },
+    {
+      "id": 20,
+      "service_name": "SamsungFraudModel"
+    },
+    {
+      "id": 21,
+      "service_name": "Bscore"
+    },
+    {
+      "id": 22,
+      "service_name": "NTCModel"
+    },
+    {
+      "id": 23,
+      "service_name": "CustomerSegmentation"
+    },
+    {
+      "id": 24,
+      "service_name": "MonthlyObligation"
+    },
+    {
+      "id": 25,
+      "service_name": "NameTriangulation"
+    },
+    {
+      "id": 26,
+      "service_name": "AACalculation"
+    },
+    {
+      "id": 27,
+      "service_name": "PostBureau"
+    },
+    {
+      "id": 40,
+      "service_name": "MNRLService"
+    },
+    {
+      "id": 56,
+      "service_name": "MonnaiAuth "
+    },
+    {
+      "id": 57,
+      "service_name": "KarzaPanGstCallout"
+    },
+    {
+      "id": 86,
+      "service_name": "IDV_NTC"
+    },
+    {
+      "id": 88,
+      "service_name": "KarzaNameFetch"
+    },
+    {
+      "id": 90,
+      "service_name": "IncomeModel"
+    },
+    {
+      "id": 91,
+      "service_name": "ExternalDBForTD"
+    },
+    {
+      "id": 92,
+      "service_name": "PANITRServiceKARZA"
+    },
+    {
+      "id": 93,
+      "service_name": "UANDetailsDataSutram"
+    },
+    {
+      "id": 99,
+      "service_name": "IncomeModel_V5_V6"
+    },
+    {
+      "id": 101,
+      "service_name": "Dedupe"
+    },
+    {
+      "id": 102,
+      "service_name": "Dedupe_kyc"
+    },
+    {
+      "id": 119,
+      "service_name": "RFCTriggerMSME_kyc"
+    },
+    {
+      "id": 120,
+      "service_name": "Actico_kyc"
+    },
+    {
+      "id": 121,
+      "service_name": "SamsungEKYC_Sync_kyc"
+    },
+    {
+      "id": 122,
+      "service_name": "SamsungEKYC_Sync_MyGO2O_kyc"
+    },
+    {
+      "id": 124,
+      "service_name": "MobileLOSEKYC_Callback_kyc"
+    },
+    {
+      "id": 125,
+      "service_name": "GenericEKYC_ResponseSync_kyc"
+    },
+    {
+      "id": 126,
+      "service_name": "AmazonFaceMatch_kyc"
+    },
+    {
+      "id": 127,
+      "service_name": "HypervergeLiveliness_QW_kyc"
+    },
+    {
+      "id": 128,
+      "service_name": "KarzaPanProfileDetail_kyc"
+    },
+    {
+      "id": 129,
+      "service_name": "KarzaDL_Validation_kyc"
+    },
+    {
+      "id": 130,
+      "service_name": "KarzaUdyamValidation_kyc"
+    },
+    {
+      "id": 131,
+      "service_name": "DANameMatch_kyc"
+    },
+    {
+      "id": 132,
+      "service_name": "DataSutramNonMaid_kyc"
+    },
+    {
+      "id": 133,
+      "service_name": "NameMatchSolution_kyc"
+    },
+    {
+      "id": 134,
+      "service_name": "AddressMatchService_kyc"
+    },
+    {
+      "id": 135,
+      "service_name": "DistanceServiceAA_kyc"
+    },
+    {
+      "id": 136,
+      "service_name": "DistanceServiceAA_AirtelFinance_kyc"
+    },
+    {
+      "id": 137,
+      "service_name": "GenericDistanceService_kyc"
+    },
+    {
+      "id": 138,
+      "service_name": "DataSutramPanProfile_kyc"
+    },
+    {
+      "id": 139,
+      "service_name": "ProteanPanAPI_kyc"
+    },
+    {
+      "id": 140,
+      "service_name": "InternalFaceDedupe_kyc"
+    },
+    {
+      "id": 141,
+      "service_name": "IxsightAuthToken_kyc"
+    },
+    {
+      "id": 142,
+      "service_name": "IxsightNegativeScrub_kyc"
+    },
+    {
+      "id": 143,
+      "service_name": "TimbleQWJourney_kyc"
+    },
+    {
+      "id": 144,
+      "service_name": "NameMatch_KYC_V_Contact_kyc"
+    },
+    {
+      "id": 145,
+      "service_name": "NameMatch_KYC_V_PAN_kyc"
+    },
+    {
+      "id": 146,
+      "service_name": "NameMatch_MultiBureau_V_PAN_kyc"
+    },
+    {
+      "id": 147,
+      "service_name": "NameMatch_KYC_V_Lead_kyc"
+    },
+    {
+      "id": 148,
+      "service_name": "NameMatch_DL_V_PAN_kyc"
+    },
+    {
+      "id": 149,
+      "service_name": "NameMatch_KYC_V_Campaign_kyc"
+    },
+    {
+      "id": 150,
+      "service_name": "NameMatch_Owner_V_BankName_kyc"
+    },
+    {
+      "id": 151,
+      "service_name": "NameMatch_DA_KYC_V_Contact_kyc"
+    },
+    {
+      "id": 152,
+      "service_name": "NameMatch_DA_KYC_V_PAN_kyc"
+    },
+    {
+      "id": 153,
+      "service_name": "NameMatch_DA_MultiBureau_V_PAN_kyc"
+    },
+    {
+      "id": 154,
+      "service_name": "NameMatch_DA_KYC_V_Lead_kyc"
+    },
+    {
+      "id": 155,
+      "service_name": "NameMatch_DA_DL_V_PAN_kyc"
+    },
+    {
+      "id": 156,
+      "service_name": "NameMatch_DA_KYC_V_Campaign_kyc"
+    },
+    {
+      "id": 157,
+      "service_name": "NameMatch_DA_Owner_V_BankName_kyc"
+    },
+    {
+      "id": 160,
+      "service_name": "HypervergeLiveliness_FetchImage_kyc"
+    },
+    {
+      "id": 163,
+      "service_name": "HypervergeLiveliness_Verify_KYC"
+    },
+    {
+      "id": 168,
+      "service_name": "CRIF"
+    },
+    {
+      "id": 172,
+      "service_name": "TimeHandelling"
+    },
+    {
+      "id": 174,
+      "service_name": "Infobib_Validate_email"
+    },
+    {
+      "id": 176,
+      "service_name": "Negative_Keyword_Check"
+    },
+    {
+      "id": 177,
+      "service_name": "PostBureauFinnable"
+    },
+    {
+      "id": 178,
+      "service_name": "PostBureauAmountUpdate"
+    },
+    {
+      "id": 179,
+      "service_name": "WorkEmailValidation"
+    },
+    {
+      "id": 180,
+      "service_name": "KarzaGSTNonOTP"
+    },
+    {
+      "id": 181,
+      "service_name": "KarzaMobileToUAN"
+    },
+    {
+      "id": 182,
+      "service_name": "KarzaUanValidation"
+    },
+    {
+      "id": 201,
+      "service_name": "ActicoPreBureau_Airtel"
+    },
+    {
+      "id": 203,
+      "service_name": "PostBureauAmountCRIF"
+    },
+    {
+      "id": 204,
+      "service_name": "Ascore_ETC_CL_Combined"
+    },
+    {
+      "id": 205,
+      "service_name": "Ascore_NTC_CL_Combined"
+    }
+  ]
+}

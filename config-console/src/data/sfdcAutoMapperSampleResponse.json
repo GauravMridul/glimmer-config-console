@@ -1,0 +1,44 @@
+{
+  "response": {
+    "body": {
+      "body": [
+        {
+          "leadid": "00Q9H00000EdwSKUAZ",
+          "Underwriting_Score": 0.20376067,
+          "Credit_bucket": 3,
+          "Data__c": "[('bureau_feature', 1.0)]",
+          "type": "STPL_wallet_bureau_ascore_V1"
+        },
+        {
+          "Underwriting_score": -999,
+          "Data__c": "",
+          "Credit_bucket": -1,
+          "type": "PL_bank_statement_ascore_V3",
+          "leadid": "00Q9H00000EdwSKUAZ"
+        },
+        {
+          "Underwriting_Score": 0.1099199429154396,
+          "Data__c": "[('stplv8_crif_underwriting_score', 741.0)]",
+          "Credit_bucket": 3,
+          "type": "STPL_bureau_ascore_V8",
+          "leadid": "00Q9H00000EdwSKUAZ"
+        },
+        {
+          "Credit_bucket": 1,
+          "type": "STPL_wallet_alternate_ascore_V3",
+          "leadid": "00Q9H00000EdwSKUAZ",
+          "Underwriting_Score": 0.0761985257267952,
+          "Data__c": "[('net_salary_monthly__c', 50000), ('age1__c', 34)]"
+        },
+        {
+          "leadid": "00Q9H00000EdwSKUAZ",
+          "prediction": 0.20376067,
+          "IncoemBucket": 3,
+          "Data__c": "[('income_feature', nan)]",
+          "type": "IncomeModel"
+        }
+      ]
+    },
+    "statusCode": 200
+  }
+}

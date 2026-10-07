@@ -1,0 +1,101 @@
+pipeline {
+    agent any
+
+    environment {
+        AWS_REGION = "ap-south-1"
+        ECR_REPO_NAME = 'decisioning-portal-uat'
+        EKS_CLUSTER_NAME = credentials('uat-eks-cluster')
+        IMAGE_TAG = "${env.BUILD_NUMBER}"
+        GITHUB_REPO = 'https://github.com/YOUR_USER/glimmer-config-console.git'
+        GITHUB_BRANCH = 'main'
+        AWSACC_ID = credentials('sc-acc-id')
+        ROLE_TO_ASSUME = credentials('sf-crs-acc-role')
+    }
+
+    stages {
+        stage('Checkout Code') {
+            steps {
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'dm-esa-sf', url: "${GITHUB_REPO}" ]])
+            }
+        }
+
+        stage('Build and Push Docker Image') {
+            steps {
+                withCredentials([string(credentialsId: 'sf-crs-acc-role', variable: 'ROLE_TO_ASSUME')]) {
+                    script {
+                        sh '''
+                        echo "Assuming role: $ROLE_TO_ASSUME"
+
+                        ASSUME_ROLE_OUTPUT=$(aws sts assume-role \
+                          --role-arn "$ROLE_TO_ASSUME" \
+                          --role-session-name jenkins-session)
+
+                        export AWS_ACCESS_KEY_ID=$(echo $ASSUME_ROLE_OUTPUT | jq -r '.Credentials.AccessKeyId')
+                        export AWS_SECRET_ACCESS_KEY=$(echo $ASSUME_ROLE_OUTPUT | jq -r '.Credentials.SecretAccessKey')
+                        export AWS_SESSION_TOKEN=$(echo $ASSUME_ROLE_OUTPUT | jq -r '.Credentials.SessionToken')
+
+                        aws sts get-caller-identity --output text
+
+                        aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin \
+                        $AWSACC_ID.dkr.ecr.$AWS_REGION.amazonaws.com
+
+                        echo "📁 Current Directory:"
+                        pwd
+                        ls -l
+
+                        echo "📁 config-console contents:"
+                        ls -l config-console
+
+                        # PUBLIC_BASE_PATH must match ingress path and deployment.yml env (same value at build + runtime).
+                        docker build --no-cache \
+                          --build-arg PUBLIC_BASE_PATH=/decisioning-portal \
+                          -t $ECR_REPO_NAME:$IMAGE_TAG \
+                          -f config-console/Dockerfile config-console/
+
+                        docker tag $ECR_REPO_NAME:$IMAGE_TAG $AWSACC_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$IMAGE_TAG
+                        docker push $AWSACC_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$IMAGE_TAG
+                        '''
+                    }
+                }
+            }
+        }
+
+        stage('Deploy to EKS') {
+            steps {
+                withCredentials([string(credentialsId: 'sf-crs-acc-role', variable: 'ROLE_TO_ASSUME')]) {
+                    script {
+                        sh '''
+                        echo "Assuming role: $ROLE_TO_ASSUME"
+
+                        ASSUME_ROLE_OUTPUT=$(aws sts assume-role \
+                          --role-arn "$ROLE_TO_ASSUME" \
+                          --role-session-name jenkins-session)
+
+                        export AWS_ACCESS_KEY_ID=$(echo $ASSUME_ROLE_OUTPUT | jq -r '.Credentials.AccessKeyId')
+                        export AWS_SECRET_ACCESS_KEY=$(echo $ASSUME_ROLE_OUTPUT | jq -r '.Credentials.SecretAccessKey')
+                        export AWS_SESSION_TOKEN=$(echo $ASSUME_ROLE_OUTPUT | jq -r '.Credentials.SessionToken')
+
+                        aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION --kubeconfig /var/lib/jenkins/.kube/config
+
+                        IMAGE="$AWSACC_ID.dkr.ecr.$AWS_REGION.amazonaws.com/$ECR_REPO_NAME:$IMAGE_TAG"
+
+                        sed "s|<IMAGE>|$IMAGE|g" config-console/deployment.yml > deployment-rendered.yml
+
+                        kubectl --kubeconfig /var/lib/jenkins/.kube/config apply -f deployment-rendered.yml
+                        kubectl --kubeconfig /var/lib/jenkins/.kube/config rollout status deployment/decisioning-portal-uat -n staging --timeout=600s
+                        '''
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        failure {
+            echo '❌ Deployment failed!'
+        }
+        success {
+            echo '✅ Successfully deployed to EKS!'
+        }
+    }
+}

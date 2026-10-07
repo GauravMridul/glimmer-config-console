@@ -1,0 +1,9 @@
+node_modules
+dist
+*.local
+.DS_Store
+.env
+server/.env
+
+# Local handoff — contains credentials; do not commit
+docs/SECRETS-MANAGER-ENV-LIST.md

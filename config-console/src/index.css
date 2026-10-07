@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  --color-surface: oklch(0.99 0.005 260);
+  --color-surface-2: oklch(0.97 0.01 260);
+  --color-ink: oklch(0.2 0.02 260);
+  --color-ink-muted: oklch(0.45 0.02 260);
+  --color-accent: oklch(0.45 0.18 265);
+  --color-accent-hover: oklch(0.4 0.2 265);
+  --color-esa: oklch(0.55 0.14 200);
+  --color-dm: oklch(0.55 0.16 145);
+  --color-warn: oklch(0.75 0.15 85);
+  --radius-card: 12px;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  background: linear-gradient(
+    165deg,
+    oklch(0.985 0.008 260) 0%,
+    oklch(0.96 0.02 270) 45%,
+    oklch(0.94 0.03 260) 100%
+  );
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Staggered entrance (e.g. Demo portal overview cards) */
+@keyframes guide-step-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.guide-step {
+  animation: guide-step-in 0.55s ease-out forwards;
+  opacity: 0;
+}
